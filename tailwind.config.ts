@@ -16,5 +16,7 @@ const config: Config = {
     },
   },
   plugins: [],
+  // now you're able to use dark-mode classes from tailwind
+  darkMode: "class",
 };
 export default config;
