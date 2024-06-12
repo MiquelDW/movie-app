@@ -10,19 +10,18 @@ export default function DarkModeSwitch() {
   // access and change current theme with the 'useTheme' hook
   // systemTheme = the theme that matches the system preference ('light' or 'dark')
   const { theme, setTheme, systemTheme } = useTheme();
-  //
+  // state variable that determines if the component is mounted client side
   const [mounted, setMounted] = useState(false);
 
   // if current theme's value === "system", use the 'systemTheme' value, if otherwise just use the current theme's value instead
   const currentTheme = theme === "system" ? systemTheme : theme;
-  //
+  // update state variable 'mounted' after the component has hydrated on the client
   useEffect(() => {
-    //
     setMounted(true);
   }, []);
   return (
     <div>
-      {/*  */}
+      {/* only run this code after the component has hydrated on the client */}
       {mounted &&
         // conditionally render a theme-switch button based on the current value of the state variable 'theme'
         (currentTheme === "dark" ? (
