@@ -12,10 +12,12 @@ export type Movie = {
   popularity: number;
   poster_path: string;
   release_date: string;
+  first_air_date: string;
   title: string;
   video: false;
   vote_average: number;
   vote_count: number;
+  name: string;
 };
 
 // retrieve the API KEY from the environmental variable
