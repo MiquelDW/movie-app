@@ -26,6 +26,11 @@ type HomeProps = {
   searchParams: { genre: string };
 };
 
+// Utility function for delay
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export default async function Home({ searchParams }: HomeProps) {
   // retrieve the current value of query paremeter "genre" from the current URL
   // if there's not a query parameter present (e.g. when app starts), use "fetchTrending" genre value for the API
@@ -42,7 +47,7 @@ export default async function Home({ searchParams }: HomeProps) {
           // revalidate the static page in the background every 1000s (ISR).
           // after the time period expires, the next request will trigger a revalidation. The stale page is still served to the user while the revalidation occurs in the background.
           // once the page is revalidated and regenerated, the new version replaces the old one in the cache. Subsequent requests after this revalidation will receive the updated page.
-          next: { revalidate: 1000 },
+          next: { revalidate: 10000 },
         },
       );
 
@@ -57,6 +62,9 @@ export default async function Home({ searchParams }: HomeProps) {
 
       // retrieve and return the main data of the parsed API response object
       const results = data.results;
+
+      // await delay(5000); // delay
+
       return results;
     } catch (err) {
       // handle both network errors and HTTP errors
