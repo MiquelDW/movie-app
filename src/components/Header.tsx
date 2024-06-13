@@ -10,10 +10,10 @@ export default function Header() {
     // Header Container
     <header className="mx-auto flex max-w-6xl items-center justify-between p-3">
       {/* Left Section */}
-      <div className="flex gap-4">
+      <nav className="flex gap-4">
         <MenuItem title="home" address="/" Icon={AiFillHome} />
         <MenuItem title="about" address="/about" Icon={BsFillInfoCircleFill} />
-      </div>
+      </nav>
 
       {/* Right Section */}
       <div className="flex items-center gap-4">
