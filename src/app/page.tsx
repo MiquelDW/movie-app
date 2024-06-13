@@ -71,19 +71,13 @@ export default async function Home({ searchParams }: HomeProps) {
   // fetch data from the specified URL / API
   const movies: Movie[] = await fetchData();
 
-  // return an error if no movie data has been fetched ('movies' is empty)
-  if (!movies) {
-    return <h1 className="text-red-400">An Error occured!</h1>;
-  }
-
   // test if fetching was succesfull
-  const titles = movies?.map((movie: Movie) => {
+  const titles = movies.map((movie: Movie) => {
     return movie.original_title;
   });
   console.log(titles);
   console.log(movies);
 
-  // otherwise, display the fetched movies data
   return (
     <div>
       <Results movies={movies} />
