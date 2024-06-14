@@ -8,6 +8,7 @@ export type Movie = {
   id: number;
   original_language: string;
   original_title: string;
+  original_name: string;
   overview: string;
   popularity: number;
   poster_path: string;
@@ -24,7 +25,7 @@ export type Movie = {
 const API_KEY = process.env.API_KEY;
 
 type HomeProps = {
-  // contains query parameters of the current URL
+  // contains dynamic query parameters from the current URL
   searchParams: { genre: string };
 };
 
@@ -56,7 +57,7 @@ export default async function Home({ searchParams }: HomeProps) {
       // handles HTTP errors that the Fetch API itself does not treat as errors
       if (!res.ok) {
         // throw new error to catch block with a message indicating the HTTP status
-        throw new Error(`HTTP error! Status: ${res.status}`);
+        throw new Error(`HTTP error! Status: ${res.status} ${res.statusText}`);
       }
 
       // parse the response body from the fetch request as JSON
@@ -64,9 +65,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
       // retrieve and return the main data of the parsed API response object
       const results = data.results;
-
       // await delay(5000); // delay
-
       return results;
     } catch (err) {
       // handle both network errors and HTTP errors
@@ -85,8 +84,8 @@ export default async function Home({ searchParams }: HomeProps) {
   const titles = movies.map((movie: Movie) => {
     return movie.original_title;
   });
-  console.log(titles);
-  console.log(movies);
+  // console.log(titles);
+  // console.log(movies);
 
   return (
     <div>
